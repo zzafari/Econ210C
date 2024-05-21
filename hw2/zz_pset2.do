@@ -10,7 +10,7 @@ graph close _all
 ********************************************************************************
 *FILE PATHS
 ********************************************************************************
-local datain "~/Desktop/210C_discussion/210C_psets/hw2/"
+local datain "~/Desktop/210C_discussion/210C_psets/hw2/" 
 local dataout "~/Desktop/210C_discussion/210C_psets/hw2/"
 local results "~/Desktop/210C_discussion/210C_psets/hw2/"
 ********************************************************************************
@@ -38,16 +38,12 @@ local rsq6 "2008q1 2008q2 2008q3 2008q4 2009q1 2009q2 2020q1"
 }
 
 ********************************************************************************
-scalar pullfreddata = 1
-scalar clean_data = 0 
-scalar graphs = 0 
 ********************************************************************************
 
 
-if pullfreddata{
-
 *SET UP ROMER DATA 
-use `datain'Monetary_shocks/RR_monetary_shock_quarterly.dta, clear 
+**JOHN: ALL YOU HAVE TO DO IS UPDATE THE LOCAL MACRO LABELED "datain" -- I added the data file you need in the repository!!! --ZZ 
+use `datain'RR_monetary_shock_quarterly.dta, clear 
 
 rename date qdate 
 format qdate %tq 
@@ -57,8 +53,8 @@ save `romer', replace
 	
 	
 	
-
-
+ 
+	**JOHN: Hopefully you can just use import fred if not here are the steps I took to use it: 
 	/*Preliminary steps: 
 	1. install freduse
 	2. create an account in st louis fed portal for fred data: zzafari@ucsd.edu
@@ -71,7 +67,7 @@ save `romer', replace
 	import fred UNRATE, clear
 	*/
 	
-* lOAD DATA FROM FRED
+*lOAD DATA FROM FRED
 local var "FEDFUNDS UNRATE GDPDEF USRECM"
 	
 import fred `var' , clear 
@@ -247,24 +243,3 @@ graph export `results'svar_RRshock.pdf, replace
 	
 
 stop 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
